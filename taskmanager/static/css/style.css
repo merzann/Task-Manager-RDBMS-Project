@@ -8,6 +8,18 @@ main {
     flex: 1 0 auto;
 }
 
+nav.navbar {
+    background-color: #623c3c;
+}
+
 a.brand-logo {
     font-family: cursive;
+}
+
+h3 {
+    font-family: cursive;
+}
+
+.page-footer {
+    background-color: #340202;
 }
