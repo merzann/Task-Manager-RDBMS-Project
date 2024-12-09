@@ -14,12 +14,43 @@ nav.navbar {
 
 a.brand-logo {
     font-family: cursive;
+    font-size: 1.8em;
 }
 
 h3 {
     font-family: cursive;
+    margin-top: 5rem;
 }
 
 .page-footer {
-    background-color: #340202;
+    background-color: #340202f2;
+}
+
+/* Media Query for Screens 768px or Larger */
+@media (min-width: 768px) {
+    .navbar .sidenav-trigger {
+        display: none; 
+    }
+
+    .navbar .right {
+        display: flex !important; 
+        align-items: center;
+    }
+
+    .navbar .right li {
+        margin-right: 10px; 
+    }
+    a.brand-logo {
+        left: 7rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .right {
+        padding-right: 1rem;
+    }
+
+    a.brand-logo {
+        left: 2.5rem;
+    }
 }
