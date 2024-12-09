@@ -28,6 +28,35 @@ a.brand-logo {
 }
 
 
+/* flash messages */
+.flash-messages {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 10px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.success-message {
+    background-color: #64dd17;
+    color:black; 
+}
+
+.error-message {
+    background-color: #d84315;
+}
+
+.warning-message {
+    background-color: #ff9800;
+    color:black;
+}
+
+
 /* buttons */
 
 a.btn-large.deep-orange.lighten-1 {
@@ -44,9 +73,24 @@ a.btn-large.deep-orange.lighten-1:hover {
 
 
 /* cards */
-div.card {
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container .col {
+    display: flex;
+    flex-direction: column; 
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     background-color: #634242;
 }
+
 
 
 /* footer */
