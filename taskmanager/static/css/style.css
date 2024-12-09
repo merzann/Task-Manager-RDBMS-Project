@@ -1,13 +1,22 @@
+/* general styles */
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
+h3 {
+    font-family: cursive;
+    color: #3e2723;
+    margin-top: 5rem;
+}
+
+
 main {
     flex: 1 0 auto;
 }
 
+/* navbar */
 nav.navbar {
     background-color: #623c3c;
 }
@@ -17,16 +26,21 @@ a.brand-logo {
     font-size: 1.8em;
 }
 
-h3 {
-    font-family: cursive;
-    margin-top: 5rem;
+/* buttons */
+a.btn-large.brown.darken-1:hover {
+    background-color: #623c3c !important;
 }
 
+/* footer */
 .page-footer {
     background-color: #340202f2;
 }
 
-/* Media Query for Screens 768px or Larger */
+footer div.container {
+    margin-bottom: 20px;
+}
+
+/* Media Queries */
 @media (min-width: 768px) {
     .navbar .sidenav-trigger {
         display: none; 
@@ -42,6 +56,10 @@ h3 {
     }
     a.brand-logo {
         left: 7rem;
+    }
+
+    footer div.container {
+        margin-left: 5rem;
     }
 }
 
