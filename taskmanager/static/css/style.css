@@ -94,18 +94,18 @@ a.brand-logo {
 
 /* buttons */
 
-a.btn-large.deep-orange.lighten-1 {
+.btn-large {
+    background-color:#8f564c;
     margin-bottom: 60px;
 }
 
-a.btn-large.deep-orange.lighten-1:hover {
-    background-color: #d84315 !important;
-    transform: scale(1.1);
+.btn-large:hover {
+    background-color: #623c3c;
+    margin-bottom: 60px;
 }
 
 .btn-large.brown.darken-1:hover {
     background-color: #623c3c !important;
-    transform: scale(1.1);
 }
 
 a.btn.deep-orange.darken-4:hover {
@@ -118,6 +118,15 @@ a.btn.green.accent-4:hover {
     transform: scale(1.1);
 }
 
+
+/* tasks page */
+
+div.collapsible-header {
+     background-color: rgb(153, 125, 99);
+}
+
+
+/* categories page */
 
 /* cards */
 
@@ -136,12 +145,12 @@ a.btn.green.accent-4:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #634242;
+    background-color: rgb(153, 125, 99);
 }
 
 div.card-action {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -161,7 +170,7 @@ footer div.container {
 @media (max-width: 576px) {
 
     .modal {
-        width: 90%;
+        min-width: 80%;
         padding: 0;
     }
 

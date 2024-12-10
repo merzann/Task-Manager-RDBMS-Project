@@ -5,10 +5,32 @@
 
 <div class="row">
     <div class="col s12 center-align">
-        <a href="{{ url_for('add_task') }}" class="btn-large deep-orange lighten-1">
+        <a href="{{ url_for('add_task') }}" class="btn-large">
             Add Task <i class="fas fa-plus-square right"></i>
         </a>
     </div>
 </div>
+
+<!-- collabsible task menu -->
+<ul class="collapsible">
+    {% for task in tasks|sort(attribute="due_date") %}
+    <li>
+        <div class="collapsible-header white-text">
+            <i class="fas fa-caret-down"></i>
+            <strong>{{ task.task_name }}</strong> : {{ task.due_date.strftime("%d %B, %Y") }}
+            {% if task.is_urgent == True %}
+                <i class="fas fa-exclamation-circle" style="color:#340202f2"></i>
+            {% endif %}
+        </div>
+        <div class="collapsible-body">
+            <strong>{{ task.category }}</strong>
+            <p>{{ task.task_description }}</p>
+            <p>
+                <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn green accent-4">Edit</a>
+            </p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
