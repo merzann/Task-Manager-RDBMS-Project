@@ -119,17 +119,28 @@ a.btn.green.accent-4:hover {
 }
 
 
-/* tasks page */
+/* collapsible */
 
 div.collapsible-header {
     background-color: rgb(153, 125, 99);
     display: flex;
-    flex-wrap: wrap;
-
+    align-items: center;
 }
 
+div.collapsible-header i {
+    margin-right: 10px;
+}
 
-/* categories page */
+div.collapsible-header .task-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+div.collapsible-header .urgent-icon {
+    margin-left: auto;
+}
+
 
 /* cards */
 
@@ -179,6 +190,13 @@ footer div.container {
 
     .modal-content {
         font-size: small;
+    }
+}
+
+@media (max-width: 768px) {
+    div.collapsible-header .task-details {
+        flex-direction: column; /* Stacks spans vertically */
+        align-items: flex-start; /* Aligns text to the left */
     }
 }
 

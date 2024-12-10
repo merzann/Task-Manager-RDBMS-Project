@@ -17,11 +17,14 @@
     <li>
         <div class="collapsible-header white-text">
             <i class="fas fa-caret-down"></i>
-            <strong>{{ task.due_date.strftime("%d %B, %Y") }}</strong>: <span>{{ task.task_name }}</span>
             {% if task.is_urgent == True %}
             <i class="fas fa-exclamation-circle" style="color:#340202f2"></i>
             {% endif %}
-        </div>
+            <div class="task-details">
+                <span><strong>{{ task.due_date.strftime("%d %B, %Y") }}</strong>:</span> 
+                <span>{{ task.task_name }}</span>
+            </div>
+        </div>        
         <div class="collapsible-body">
             <strong>{{ task.category }}</strong>
             <p>{{ task.task_description }}</p>
