@@ -57,6 +57,41 @@ a.brand-logo {
 }
 
 
+/* Modal */
+
+.modal {
+    background-color: black;
+    opacity: 0.8 !important;
+    max-width: 50%;
+    padding: 20px;
+    border-radius: 4px; 
+    overflow: hidden; 
+    top: 10rem !important;
+    position: fixed; 
+    z-index: 1003;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-footer {
+    background-color: black !important;
+    opacity: 0.9 !important;
+    padding: 10px; 
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-footer .btn {
+    margin: 0 5px;
+}
+
+
 /* buttons */
 
 a.btn-large.deep-orange.lighten-1 {
@@ -65,10 +100,22 @@ a.btn-large.deep-orange.lighten-1 {
 
 a.btn-large.deep-orange.lighten-1:hover {
     background-color: #d84315 !important;
+    transform: scale(1.1);
 }
 
 .btn-large.brown.darken-1:hover {
     background-color: #623c3c !important;
+    transform: scale(1.1);
+}
+
+a.btn.deep-orange.darken-4:hover {
+    background-color: #f73d05 !important;
+    transform: scale(1.2);
+}
+
+a.btn.green.accent-4:hover {
+    background-color: #64dd17 !important;
+    transform: scale(1.1);
 }
 
 
@@ -88,9 +135,15 @@ a.btn-large.deep-orange.lighten-1:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: #634242;
 }
 
+div.card-action {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
 
 /* footer */
@@ -105,7 +158,20 @@ footer div.container {
 
 
 /* Media Queries */
+@media (max-width: 576px) {
+
+    .modal {
+        width: 90%;
+        padding: 0;
+    }
+
+    .modal-content {
+        font-size: small;
+    }
+}
+
 @media (min-width: 768px) {
+
     .navbar .sidenav-trigger {
         display: none; 
     }
@@ -128,6 +194,7 @@ footer div.container {
 }
 
 @media (min-width: 992px) {
+
     .navbar .right {
         padding-right: 1rem;
     }
