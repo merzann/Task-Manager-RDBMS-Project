@@ -1,7 +1,10 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import (
+    render_template, request, redirect, url_for, flash
+)
 from datetime import datetime
 from taskmanager import app, db
 from taskmanager.models import Category, Task
+
 
 @app.route("/")
 def home():
@@ -19,32 +22,32 @@ def categories():
 def add_category():
     try:
         if request.method == "POST":
-            # Get the category name from the form
             category_name = request.form.get("category_name")
-            
-            # Validate that the category name is not empty
+
             if not category_name:
                 flash("Category name cannot be empty.", "error")
                 return render_template("add_category.html")
-            
-            # Check if the category name already exists in the database
-            existing_category = Category.query.filter_by(category_name=category_name).first()
+
+            existing_category = Category.query.filter_by(
+                category_name=category_name
+            ).first()
+
             if existing_category:
-                flash("Category already exists. Please choose a different name.", "warning")
+                flash(
+                    "Category already exists. Please choose a different name.",
+                    "warning",
+                )
                 return render_template("add_category.html")
 
-            # Add the new category to the database
             category = Category(category_name=category_name)
             db.session.add(category)
             db.session.commit()
 
-            # Show a success message and redirect
             flash("Category added successfully!", "success")
             return redirect(url_for("categories"))
 
         return render_template("add_category.html")
     except Exception as e:
-        # Log the exception and show an error message
         app.logger.error(f"Error adding category: {e}")
         flash("An unexpected error occurred. Please try again later.", "error")
         return render_template("add_category.html")
@@ -71,42 +74,62 @@ def delete_category(category_id):
 @app.route("/add_task", methods=["GET", "POST"])
 def add_task():
     try:
-        categories = list(Category.query.order_by(Category.category_name).all())
+        categories = list(
+            Category.query.order_by(
+                Category.category_name
+            ).all())
         if not categories:
-            flash("No categories found. Please add a category first.", "warning")
+            flash(
+                "No categories found. Please add a category first.", "warning"
+            )
             return redirect(url_for("add_category"))
 
         if request.method == "POST":
             task_name = request.form.get("task_name")
             if not task_name:
                 flash("Task name cannot be empty.", "error")
-                return render_template("add_task.html", categories=categories)
+                return render_template(
+                    "add_task.html", categories=categories
+                )
 
             task_description = request.form.get("task_description")
-            is_urgent = True if request.form.get("is_urgent") else False
+            is_urgent = bool(request.form.get("is_urgent"))
             due_date = request.form.get("due_date")
             category_id = request.form.get("category_id")
 
-            if not category_id or not category_id.isdigit() or not Category.query.get(category_id):
-                flash("Invalid category selected. Please choose a valid category.", "error")
-                return render_template("add_task.html", categories=categories)
-            
+            if (
+                not category_id
+                or not category_id.isdigit()
+                or not Category.query.get(category_id)
+            ):
+                flash(
+                    "Invalid category selected. "
+                    "Please choose a valid category.",
+                    "error",
+                )
+                return render_template(
+                    "add_task.html", categories=categories
+                )
+
             if due_date:
                 try:
-                    # Parse the input date with the new format
                     parsed_date = datetime.strptime(due_date, "%d %B, %Y")
-                    # Optionally reformat for storage or further use (if needed)
-                    due_date = parsed_date.strftime("%Y-%m-%d")  # Example: '2024-12-23'
+                    due_date = parsed_date.strftime("%Y-%m-%d")
                 except ValueError:
-                    flash("Invalid date format. Please use the datepicker to select a valid date.", "error")
-                    return render_template("add_task.html", categories=categories)
+                    flash(
+                        "Invalid date format. Please use the datepicker.",
+                        "error",
+                    )
+                    return render_template(
+                        "add_task.html", categories=categories
+                    )
 
             task = Task(
                 task_name=task_name,
                 task_description=task_description,
                 is_urgent=is_urgent,
                 due_date=due_date,
-                category_id=int(category_id)
+                category_id=int(category_id),
             )
 
             db.session.add(task)
@@ -125,15 +148,18 @@ def add_task():
 def edit_task(task_id):
     task = Task.query.get_or_404(task_id)
     categories = list(Category.query.order_by(Category.category_name).all())
+
     if request.method == "POST":
         task.task_name = request.form.get("task_name")
         task.task_description = request.form.get("task_description")
-        task.is_urgent = bool(True if request.form.get("is_urgent") else False)
+        task.is_urgent = bool(request.form.get("is_urgent"))
         task.due_date = request.form.get("due_date")
         task.category_id = request.form.get("category_id")
         db.session.commit()
-        
-    return render_template("edit_task.html", task=task, categories=categories)
+
+    return render_template(
+        "edit_task.html", task=task, categories=categories
+    )
 
 
 @app.route("/delete_task/<int:task_id>")
